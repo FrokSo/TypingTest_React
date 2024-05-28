@@ -7,7 +7,8 @@ interface TextBoxProp {
     retrieveNumCorrectWords: (num: number) => void;
 }
 
-function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWords }: TextBoxProp) {
+function TextBox({ wordDump, isTextboxDisabled, startTimer,
+    retrieveNumCorrectWords }: TextBoxProp) {
     const [value, setValue] = useState('');
     const [userInput, setUserInput] = useState<JSX.Element[]>([]);
     const [isTimerStarted, setIsTimerStarted] = useState(false);
@@ -67,15 +68,18 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
 
     return (
         <>
-            <div>{userInput}</div>
-            <input
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                value={value}
-                type="text"
-                spellCheck={false}
-                disabled={isTextboxDisabled}
-            />
+            <div className="container">
+                <div className="referenceText"> {userInput} </div>
+                <input className="user-input"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    value={value}
+                    type="text"
+                    spellCheck={false}
+                    disabled={isTextboxDisabled}
+                />
+
+            </div>
         </>
     );
 }
