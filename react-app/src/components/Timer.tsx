@@ -34,6 +34,7 @@ function Timer({ initialSeconds, shouldStart, onTimerFinish, retrieveTime }: Tim
             }
         }
     }, [seconds, onTimerFinish, isStarted])
+    return (<p>Time Left: {seconds}</p>)
 }
 
 export default Timer;
