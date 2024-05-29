@@ -37,16 +37,3 @@
   z-index: 1;
   color: transparent;
 }
-
-.user-input:focus {
-  outline: none;
-  border-color: #666;
-}
-
-.correct {
-  color: green;
-}
-
-.incorrect {
-  color: red;
-}

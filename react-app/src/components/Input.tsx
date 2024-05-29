@@ -16,7 +16,7 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
         checkUserInput();
     }, [value]);
 
-    const checkUserInput = (): JSX.Element[] => {
+    const checkUserInput = () => {
         const input: JSX.Element[] = [];
         const wordsUserTyped: string = value;
         const userTypedArray: string[] = wordsUserTyped.split(' ');
@@ -61,7 +61,6 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
         }
 
         setUserInput(input);
-        return input;
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +74,10 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
         }
     };
 
+    const newWordDump: string = "This is a test";
+    const checkTrue = (index: number, idx: number): boolean => {
+        return true;
+    }
     return (
         <>
             <div className="container">
@@ -89,6 +92,16 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
                     disabled={isTextboxDisabled}
                 />
             </div>
+            <p>{newWordDump.split(' ').map((word, index) => (
+                <span key={index}>
+                    {index > 0 && ' '}
+                    <span>
+                        {word.split('').map((char, idx) => (
+                            <span key={idx} style={{ color: checkTrue(index, idx) ? 'green' : 'red' }}>{char}</span>
+                        ))}
+                    </span>
+                </span>
+            ))}</p>
         </>
     );
 }

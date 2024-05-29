@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Worker from '../worker/TimerWorker.ts?worker';
 
 interface TimerProp {
     initialSeconds: number;
@@ -10,31 +11,35 @@ interface TimerProp {
 function Timer({ initialSeconds, shouldStart, onTimerFinish, retrieveTime }: TimerProp) {
 
     const [seconds, setSeconds] = useState(initialSeconds);
-    const [isStarted, setIsStarted] = useState(false);
+
+    const worker = new Worker()
 
     useEffect(() => {
         if (shouldStart) {
-            setIsStarted(true);
-            console.log(`Entered useEffect. shouldStart: ${shouldStart}`)
-            console.log(`Entered useEffect. isStarted: ${isStarted}`)
-        }
-    }, [shouldStart, isStarted])
-    useEffect(() => {
-        if (isStarted) {
-            if (seconds > 0) {
-                const interval = setInterval(() => {
-                    setSeconds(prevSeconds => prevSeconds - 1);
-                }, 1000);
-
-                retrieveTime(seconds);
-                return () => clearInterval(interval);
+            const workerData = {
+                time: initialSeconds,
+                status: "start"
+            };
+            worker.postMessage(workerData);
+            console.log(`SetSeconds: initialize`)
+            worker.onmessage = (event: MessageEvent) => {
+                console.log(`SetSeconds: ${event.data.time}`)
+                setSeconds(event.data.time);
+                retrieveTime(event.data.time);
+                if (event.data.status === "stopped") {
+                    // onTimerFinish();
+                    worker.terminate();
+                }
+            };
+            return () => {
+                if (worker) {
+                    onTimerFinish();
+                    worker.terminate();
+                }
             }
-            else {
-                onTimerFinish();
-            }
         }
-    }, [seconds, onTimerFinish, isStarted])
-    return (<p>Time Left: {seconds}</p>)
+    }, [shouldStart])
+    return <p>Time Remaining: {seconds}</p>
 }
 
 export default Timer;
