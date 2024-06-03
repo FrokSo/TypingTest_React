@@ -2,3 +2,15 @@ node_modules/
 
 logs/
 *.log
+
+#visual studio directories
+bin/
+obj/
+
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+.vscode/*
+*.csproj.user
