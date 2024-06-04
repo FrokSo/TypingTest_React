@@ -24,7 +24,7 @@
 }
 
 .user-input {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -36,4 +36,8 @@
   position: relative;
   z-index: 1;
   color: transparent;
+}
+
+.spanSpace{
+  margin-right: 10px;
 }

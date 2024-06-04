@@ -9,7 +9,7 @@ interface HomeProp {
 
 function Home({ wordDump, initialSeconds }: HomeProp) {
     const [shouldStart, setshouldStart] = useState(false);
-    const [isTextboxDisabled, setIsTextboxDisabled] = useState(false);
+    const [isTextboxDiabled, setIsTextBoxDisable] = useState(false);
 
     const [wpm, setWpm] = useState(0);
     const [timeRemaining, setTimeRemaining] = useState(0);
@@ -17,17 +17,17 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
 
 
     useEffect(() => {
-        let tempWpm = numCorrectWords / (initialSeconds - timeRemaining) * initialSeconds;
+        let tempWpm = numCorrectWords / (initialSeconds - timeRemaining) * 60;
         setWpm(tempWpm);
     }, [numCorrectWords, timeRemaining])
+    
     const handleOnTimerFinish = () => {
-        setIsTextboxDisabled(true);
+        setIsTextBoxDisable(true);
         setshouldStart(false);
     }
 
     const handleStartTimer = () => {
         setshouldStart(true);
-        console.log(`Entered handledStartTimer. shouldStart: ${shouldStart}`)
     }
 
     const handleRetrieveTime = (time: number): void => {
@@ -41,12 +41,13 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
     return (
         <>
             <p>words per minute: {wpm}</p>
-            <Timer initialSeconds={initialSeconds}
+            <Timer 
+                initialSeconds={initialSeconds}
                 shouldStart={shouldStart}
                 onTimerFinish={handleOnTimerFinish}
                 retrieveTime={handleRetrieveTime} />
             <TextBox wordDump={wordDump}
-                isTextboxDisabled={isTextboxDisabled}
+                disableTextBox = {isTextboxDiabled}
                 startTimer={handleStartTimer}
                 retrieveNumCorrectWords={handleRetrieveNumCorrectWords}
             />

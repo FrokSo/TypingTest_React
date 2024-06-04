@@ -2,66 +2,85 @@ import React, { useState, useEffect } from "react";
 
 interface TextBoxProp {
     wordDump: string[];
-    isTextboxDisabled: boolean;
+    disableTextBox: boolean;
     startTimer: () => void;
     retrieveNumCorrectWords: (num: number) => void;
 }
 
-function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWords }: TextBoxProp) {
+function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords }: TextBoxProp) {
     const [value, setValue] = useState('');
     const [userInput, setUserInput] = useState<JSX.Element[]>([]);
     const [isTimerStarted, setIsTimerStarted] = useState(false);
+    const [isTextboxDisabled, setIsTextboxDisabled] = useState(disableTextBox);
 
     useEffect(() => {
         checkUserInput();
     }, [value]);
 
+    useEffect(()=>{
+        setIsTextboxDisabled(disableTextBox);
+    },[disableTextBox])
+
     const checkUserInput = () => {
-        const input: JSX.Element[] = [];
         const wordsUserTyped: string = value;
         const userTypedArray: string[] = wordsUserTyped.split(' ');
         const numberWordsTyped: number = userTypedArray.length;
 
         let correctCount = 0;
-        for (let i = 0; i < numberWordsTyped; ++i) {
-            for (let charIndex = 0; charIndex < wordDump[i].length; ++charIndex) {
-                if (wordDump[i][charIndex] === (userTypedArray[i] ? userTypedArray[i][charIndex] : '')) {
+        if (numberWordsTyped <= wordDump.length){
+            const input: JSX.Element[] = [];
+
+            // Words Iteration
+            for (let i = 0; i < numberWordsTyped; ++i) {
+                var currentCharIndex = userTypedArray[i].length - 1;
+
+                // Checks from index 0 to current word
+                for (let charChecker = 0; charChecker <= currentCharIndex; ++charChecker) {
                     input.push(
-                        <span key={`${i}-${charIndex}`} style={{ color: "green" }}>
-                            {wordDump[i][charIndex]}
+                        <span key={`${i}-${charChecker}`} 
+                            style={{ color: getCharColor(wordDump[i][charChecker], userTypedArray[i] ? 
+                                userTypedArray[i][charChecker] :
+                                '') }}>
+                            {wordDump[i][charChecker]}
                         </span>
                     );
-                } else if (userTypedArray[i] && wordDump[i][charIndex] !== userTypedArray[i][charIndex]) {
-                    input.push(
-                        <span key={`${i}-${charIndex}`} style={{ color: "red" }}>
-                            {wordDump[i][charIndex]}
-                        </span>
-                    );
-                } else {
+                }
+
+                for (let charIndex = currentCharIndex + 1; charIndex < wordDump[i].length; ++charIndex) {
+                    console.log(`${i}-${charIndex}`);
                     input.push(
                         <span key={`${i}-${charIndex}`} style={{ color: "black" }}>
                             {wordDump[i][charIndex]}
                         </span>
                     );
+                    currentCharIndex++;
+                }
+                input.push(<span className="spanSpace" key={`space-${i}`}></span>);
+                if (wordDump[i] === userTypedArray[i]) {
+                    correctCount++;
                 }
             }
-            input.push(<span key={`space-${i}`}>&nbsp;</span>);
-            if (wordDump[i] == userTypedArray[i]) {
-                correctCount++;
+            
+            for (let i = numberWordsTyped; i < wordDump.length; ++i) {
+                input.push(
+                    <span className= "spanSpace" key={i} style={{ color: "black" }}>
+                        {wordDump[i]}
+                    </span>
+                );
             }
-        }
-        retrieveNumCorrectWords(correctCount);
+            retrieveNumCorrectWords(correctCount);
+            setUserInput(input);
+        };
+    }
 
-        for (let i = numberWordsTyped; i < wordDump.length; ++i) {
-            input.push(
-                <span key={i} style={{ color: "black" }}>
-                    {wordDump[i]} &nbsp;
-                </span>
-            );
-        }
+    const getCharColor = (userInputChar: string, wordDumpChar: string) : string =>{
 
-        setUserInput(input);
-    };
+        if (userInputChar === wordDumpChar){
+            return "green";
+        }  else{
+            return "red"
+        }
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -71,13 +90,10 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
         if (!isTimerStarted) {
             startTimer();
             setIsTimerStarted(true); // only calls this once
+            console.log("Timer has started");
         }
     };
 
-    const newWordDump: string = "This is a test";
-    const checkTrue = (index: number, idx: number): boolean => {
-        return true;
-    }
     return (
         <>
             <div className="container">
@@ -92,16 +108,6 @@ function TextBox({ wordDump, isTextboxDisabled, startTimer, retrieveNumCorrectWo
                     disabled={isTextboxDisabled}
                 />
             </div>
-            <p>{newWordDump.split(' ').map((word, index) => (
-                <span key={index}>
-                    {index > 0 && ' '}
-                    <span>
-                        {word.split('').map((char, idx) => (
-                            <span key={idx} style={{ color: checkTrue(index, idx) ? 'green' : 'red' }}>{char}</span>
-                        ))}
-                    </span>
-                </span>
-            ))}</p>
         </>
     );
 }

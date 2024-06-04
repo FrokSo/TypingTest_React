@@ -21,13 +21,11 @@ function Timer({ initialSeconds, shouldStart, onTimerFinish, retrieveTime }: Tim
                 status: "start"
             };
             worker.postMessage(workerData);
-            console.log(`SetSeconds: initialize`)
             worker.onmessage = (event: MessageEvent) => {
-                console.log(`SetSeconds: ${event.data.time}`)
                 setSeconds(event.data.time);
                 retrieveTime(event.data.time);
                 if (event.data.status === "stopped") {
-                    // onTimerFinish();
+                    onTimerFinish();
                     worker.terminate();
                 }
             };

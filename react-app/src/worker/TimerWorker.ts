@@ -7,7 +7,6 @@ self.onmessage = (event: MessageEvent) => {
         interval = setInterval(() => {
           if (time > 0) {
                 time = time - 1;
-                console.log(time);
                 self.postMessage({ time });
             } else {
                 clearInterval(interval);
