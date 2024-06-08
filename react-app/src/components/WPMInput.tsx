@@ -17,9 +17,9 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
         checkUserInput();
     }, [value]);
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsTextboxDisabled(disableTextBox);
-    },[disableTextBox])
+    }, [disableTextBox])
 
     const checkUserInput = () => {
         const wordsUserTyped: string = value;
@@ -27,7 +27,7 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
         const numberWordsTyped: number = userTypedArray.length;
 
         let correctCount = 0;
-        if (numberWordsTyped <= wordDump.length){
+        if (numberWordsTyped <= wordDump.length) {
             const input: JSX.Element[] = [];
 
             // Words Iteration
@@ -37,10 +37,12 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
                 // Checks from index 0 to current word
                 for (let charChecker = 0; charChecker <= currentCharIndex; ++charChecker) {
                     input.push(
-                        <span key={`${i}-${charChecker}`} 
-                            style={{ color: getCharColor(wordDump[i][charChecker], userTypedArray[i] ? 
-                                userTypedArray[i][charChecker] :
-                                '') }}>
+                        <span key={`${i}-${charChecker}`}
+                            style={{
+                                color: getCharColor(wordDump[i][charChecker], userTypedArray[i] ?
+                                    userTypedArray[i][charChecker] :
+                                    '')
+                            }}>
                             {wordDump[i][charChecker]}
                         </span>
                     );
@@ -60,10 +62,10 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
                     correctCount++;
                 }
             }
-            
+
             for (let i = numberWordsTyped; i < wordDump.length; ++i) {
                 input.push(
-                    <span className= "spanSpace" key={i} style={{ color: "black" }}>
+                    <span className="spanSpace" key={i} style={{ color: "black" }}>
                         {wordDump[i]}
                     </span>
                 );
@@ -73,11 +75,11 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
         };
     }
 
-    const getCharColor = (userInputChar: string, wordDumpChar: string) : string =>{
+    const getCharColor = (userInputChar: string, wordDumpChar: string): string => {
 
-        if (userInputChar === wordDumpChar){
+        if (userInputChar === wordDumpChar) {
             return "green";
-        }  else{
+        } else {
             return "red"
         }
     }

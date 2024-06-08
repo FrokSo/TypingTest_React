@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import TextBox from "../components/Input";
+import TextBox from "../components/WPMInput";
 import Timer from "../components/Timer";
+import BasicTextbox from "../components/BasicTextbox";
 
 interface HomeProp {
     wordDump: string[];
@@ -20,7 +21,7 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
         let tempWpm = numCorrectWords / (initialSeconds - timeRemaining) * 60;
         setWpm(tempWpm);
     }, [numCorrectWords, timeRemaining])
-    
+
     const handleOnTimerFinish = () => {
         setIsTextBoxDisable(true);
         setshouldStart(false);
@@ -38,16 +39,24 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
         setNumCorrectWords(num);
     }
 
+    const handleReceiveUserInput = (userInput: string) => {
+
+    }
+
     return (
         <>
+            <div className="flex">
+                <p>Enter Name: </p>
+                <BasicTextbox receiveUserInput={handleReceiveUserInput} />
+            </div>
             <p>words per minute: {wpm}</p>
-            <Timer 
+            <Timer
                 initialSeconds={initialSeconds}
                 shouldStart={shouldStart}
                 onTimerFinish={handleOnTimerFinish}
                 retrieveTime={handleRetrieveTime} />
             <TextBox wordDump={wordDump}
-                disableTextBox = {isTextboxDiabled}
+                disableTextBox={isTextboxDiabled}
                 startTimer={handleStartTimer}
                 retrieveNumCorrectWords={handleRetrieveNumCorrectWords}
             />
