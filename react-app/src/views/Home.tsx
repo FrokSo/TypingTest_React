@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TextBox from "../components/WPMInput";
 import Timer from "../components/Timer";
 import BasicTextbox from "../components/BasicTextbox";
+import Button from "../components/Button"
 
 interface HomeProp {
     wordDump: string[];
@@ -48,6 +49,7 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
             <div className="flex">
                 <p>Enter Name: </p>
                 <BasicTextbox receiveUserInput={handleReceiveUserInput} />
+                <Button buttonContext="Enter" />
             </div>
             <p>words per minute: {wpm}</p>
             <Timer
