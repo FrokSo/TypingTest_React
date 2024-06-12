@@ -8,12 +8,15 @@ function Button({ buttonContext }: ButtonProp) {
 
     const handleSubmit = async () => {
         const record = {
-            WPM: 100,
-            UserName: "asd",
-        };
+            "RecordId": 2,
+            "WPM": 0,
+            "UserName": "string",
+            "inputDate": "2024-06-11T16:08:03.085Z"
+        }
 
         try {
-            const response = await axios.post('http://localhost:5000/WPMRecords', record);
+            const response = await axios.get('http://localhost:5000/api/WPMRecords');
+            console.log("Entered");
             if (response.status === 200) {
                 alert('Record submitted successfully');
             }
