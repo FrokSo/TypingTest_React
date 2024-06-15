@@ -1,0 +1,84 @@
+.container {
+    position: relative;
+    width: 80%;
+    height: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Montserrat';
+    background-color: transparent;
+    border: 2px solid #EFFF0AE6;
+    border-radius: 25px;
+  }
+  
+.user-input {
+    caret-color: transparent;
+
+    position: absolute;
+    line-height: 1.5;
+    top: 0%;
+    left: 20px;
+    font-size: 30px;
+    box-sizing: border-box;
+    transform: translateY(50%, 50%);
+    margin: 10px;
+    width: 95%;
+    height: 700px;
+    padding: 10px;
+
+    border: 1px;
+    z-index: 1;
+    color: transparent;
+    background-color: transparent;
+    flex-wrap: wrap;
+  }
+
+  .user-input:focus{
+    border-radius: 25px;
+    outline: 0.1px solid #EFFF0AE6; /* Remove default focus outline */
+  }
+
+  
+.referenceText {
+    position: absolute;
+    line-height: 1.5;
+    top: 0%;
+    left: 20px;
+    font-size: 30px;
+    transform: translateY(50%, 50%);
+    margin: 10px;
+    width: 95%;
+    height: 700px;
+    padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    pointer-events: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+.spanDefault{
+    color: rgba(211, 211, 211, 0.6);
+    font-size: 30px;
+}
+  
+.spanError{
+    color: red;
+    font-size: 30px;
+
+}
+.spanCorrect{
+    color: lightgrey;
+    font-size: 30px;
+}
+
+.spanSpace{
+    margin-right: 10px;
+}
+
+.spanUntyped{
+    margin-right: 10px;
+    color: rgba(211, 211, 211, 0.6);
+    font-size: 30px;
+
+}

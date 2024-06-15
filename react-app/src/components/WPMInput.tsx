@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import "./WPMInput.css";
 
-interface TextBoxProp {
+interface WPMInputProp {
     wordDump: string[];
     disableTextBox: boolean;
     startTimer: () => void;
     retrieveNumCorrectWords: (num: number) => void;
 }
 
-function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords }: TextBoxProp) {
+function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords }: WPMInputProp) {
     const [value, setValue] = useState('');
     const [userInput, setUserInput] = useState<JSX.Element[]>([]);
     const [isTimerStarted, setIsTimerStarted] = useState(false);
@@ -38,25 +39,24 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
                 for (let charChecker = 0; charChecker <= currentCharIndex; ++charChecker) {
                     input.push(
                         <span key={`${i}-${charChecker}`}
-                            style={{
-                                color: getCharColor(wordDump[i][charChecker], userTypedArray[i] ?
-                                    userTypedArray[i][charChecker] :
-                                    '')
-                            }}>
+                            className={getCharColor(wordDump[i][charChecker], userTypedArray[i][charChecker]) ?
+                                "spanCorrect" : "spanError"}>
                             {wordDump[i][charChecker]}
                         </span>
                     );
+                    console.log(`${wordDump[i][charChecker]}, ${userTypedArray[i]}`);
                 }
 
                 for (let charIndex = currentCharIndex + 1; charIndex < wordDump[i].length; ++charIndex) {
-                    console.log(`${i}-${charIndex}`);
                     input.push(
-                        <span key={`${i}-${charIndex}`} style={{ color: "black" }}>
+                        <span key={`${i}-${charIndex}`}
+                            className="spanDefault">
                             {wordDump[i][charIndex]}
                         </span>
                     );
                     currentCharIndex++;
                 }
+
                 input.push(<span className="spanSpace" key={`space-${i}`}></span>);
                 if (wordDump[i] === userTypedArray[i]) {
                     correctCount++;
@@ -65,7 +65,7 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
 
             for (let i = numberWordsTyped; i < wordDump.length; ++i) {
                 input.push(
-                    <span className="spanSpace" key={i} style={{ color: "black" }}>
+                    <span className="spanUntyped" key={i}>
                         {wordDump[i]}
                     </span>
                 );
@@ -75,12 +75,12 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
         };
     }
 
-    const getCharColor = (userInputChar: string, wordDumpChar: string): string => {
+    const getCharColor = (userInputChar: string, wordDumpChar: string): boolean => {
 
         if (userInputChar === wordDumpChar) {
-            return "green";
+            return true;
         } else {
-            return "red"
+            return false;
         }
     }
 
@@ -114,4 +114,4 @@ function TextBox({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWords
     );
 }
 
-export default TextBox;
+export default WPMInput;

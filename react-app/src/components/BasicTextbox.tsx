@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./BasicTextbox.css";
 
 interface BasicTextboxProp {
     receiveUserInput: (textboxInput: string) => void
@@ -13,7 +14,8 @@ function BasicTextbox({ receiveUserInput }: BasicTextboxProp) {
         receiveUserInput(userInput);
     }
 
-    return (<input type="text"
+    return (<input className="textbox"
+        type="text"
         onChange={handleOnChange}>
     </input>)
 }

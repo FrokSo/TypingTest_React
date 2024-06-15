@@ -1,0 +1,31 @@
+header{
+}
+
+.header{
+    font-size: 50px;
+    color: #ddddddc5;
+}
+
+.listItem{
+    margin-right: 50px;
+    padding: 0;
+    text-decoration: underline;
+    display: inline-flex;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.70);
+}
+
+.listItem:hover{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.styledList {
+    padding: 20px;
+    text-decoration: underline;
+    list-style-type: disc;
+  }
+
+li{
+    size: 100px;
+}

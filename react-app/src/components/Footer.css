@@ -1,0 +1,15 @@
+Footer{
+    background-color: #EFFF0AE6;
+    margin-top: 30px;
+    text-align: center;
+    width: 500px;
+}
+
+.divFooter{
+    display: flex;
+    justify-content: center; /* Center children vertically */
+}
+
+.footerP{
+    color:rgba(0, 0, 0, 0.795);
+}
