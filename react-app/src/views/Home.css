@@ -1,3 +1,7 @@
 p{
-    color: rgba(223, 222, 200, 0.836);
+    color: #ddddddc5;
+}
+
+.infoDiv{
+    padding-left: 10%;
 }

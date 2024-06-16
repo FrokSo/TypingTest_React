@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./WPMInput.css";
 
 interface WPMInputProp {
@@ -13,6 +13,7 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
     const [userInput, setUserInput] = useState<JSX.Element[]>([]);
     const [isTimerStarted, setIsTimerStarted] = useState(false);
     const [isTextboxDisabled, setIsTextboxDisabled] = useState(disableTextBox);
+    const mouseDownRef = useRef(false);
 
     useEffect(() => {
         checkUserInput();
@@ -89,6 +90,9 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
     };
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
+        if (event.ctrlKey && event.key === 'a') {
+            event.preventDefault(); // Prevent the "select all" functionality
+        }
         if (!isTimerStarted) {
             startTimer();
             setIsTimerStarted(true); // only calls this once

@@ -42,18 +42,16 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
         setNumCorrectWords(num);
     }
 
-    const handleReceiveUserInput = (userInput: string) => {
-
-    }
-
     return (
-        <>
-            <p>words per minute: {wpm}</p>
-            <Timer
-                initialSeconds={initialSeconds}
-                shouldStart={shouldStart}
-                onTimerFinish={handleOnTimerFinish}
-                retrieveTime={handleRetrieveTime} />
+        <div >
+            <div className="infoDiv">
+                <p>words per minute: {wpm}</p>
+                <Timer
+                    initialSeconds={initialSeconds}
+                    shouldStart={shouldStart}
+                    onTimerFinish={handleOnTimerFinish}
+                    retrieveTime={handleRetrieveTime} />
+            </div>
             <WPMInput wordDump={wordDump}
                 disableTextBox={isTextboxDiabled}
                 startTimer={handleStartTimer}
@@ -66,7 +64,7 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
                 <BasicTextbox receiveUserInput={handleReceiveUserInput} />
                 <Button buttonContext="Enter" />
             </div> */}
-        </>
+        </div>
     )
 }
 
