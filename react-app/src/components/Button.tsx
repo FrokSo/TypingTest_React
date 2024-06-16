@@ -2,10 +2,12 @@ import axios from 'axios';
 
 interface ButtonProp {
     buttonContext: string;
+    handleOnClick: () => void;
 }
 
-function Button({ buttonContext }: ButtonProp) {
+function Button({ buttonContext, handleOnClick }: ButtonProp) {
 
+    // function to be exported out
     const handleSubmit = async () => {
         const record = {
             "RecordId": 2,

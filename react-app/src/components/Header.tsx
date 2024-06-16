@@ -18,6 +18,7 @@ function Header({ header }: HeaderProp) {
                 <ul className="styledList">
                     <li className="listItem" onClick={() => navigate('/')}>Home</li>
                     <li className="listItem" onClick={() => navigate('/about')}>About</li>
+                    <li className="listItem" onClick={() => navigate('/highscore')}>HighScore</li>
                 </ul>
             </nav>
         </div>

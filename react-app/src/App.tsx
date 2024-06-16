@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import About from './views/About';
 import Home from './views/Home';
+import Highscore from './views/Highscore'
 
 function App() {
 
@@ -41,10 +42,11 @@ function App() {
         <div>
           <Header header='Typing Speed Website' />
           <Routes>
-            <Route path="/" element={<Home wordDump={wordDump}
+            <Route key="/" path="/" element={<Home wordDump={wordDump}
               initialSeconds={60}
             />} />
-            <Route path="/about" Component={About} />
+            <Route key="about" path="/about" Component={About} />
+            <Route key="highscore" path="/highscore" Component={Highscore} />
           </Routes>
           <Footer footerInput={footerInput} />
         </div>
