@@ -1,0 +1,12 @@
+.highscoreHeader {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  color: #dddddde0;
+  text-align: center;
+}
+
+.highscoreWpmDiv {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}

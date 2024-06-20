@@ -1,0 +1,10 @@
+.tableBasicStyle {
+  width: 100%;
+  font-size: 20px;
+}
+
+th,
+td {
+  border: 1px solid #444;
+  color: rgba(255, 255, 255, 0.7);
+}

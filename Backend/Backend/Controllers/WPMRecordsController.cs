@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Model;
+using Microsoft.VisualBasic;
 
 namespace Backend.Controllers
 {
@@ -76,10 +77,16 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<WPMRecord>> PostWPMRecord(WPMRecord wPMRecord)
         {
-            _context.WPMRecords.Add(wPMRecord);
+            WPMRecord record = new WPMRecord
+            {
+                UserName = wPMRecord.UserName,
+                WPM = wPMRecord.WPM,
+                inputDate = DateTime.Now,
+            };
+            _context.WPMRecords.Add(record);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWPMRecord", new { id = wPMRecord.RecordId }, wPMRecord);
+            return CreatedAtAction("GetWPMRecord", new { id = record.RecordId }, record);
         }
 
         // DELETE: api/WPMRecords/5

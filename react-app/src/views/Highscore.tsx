@@ -1,43 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { ApiResponse, RetrieveRecords } from "../NetworkAPI/NetworkCommands";
+import {
+  ApiPostRequest,
+  ApiResponse,
+  RetrieveRecords,
+  SendRecord,
+} from "../NetworkAPI/NetworkCommands";
+
+import Table from "../components/Table";
+import Button from "../components/Button";
+import "./Highscore.css";
+import SavePrompt from "./SavePrompt";
 
 function Highscore() {
-    const [records, setRecords] = useState<ApiResponse[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+  const [records, setRecords] = useState<ApiResponse[]>([]);
+  const [savePromptVisibility, setSavePromptVisibility] = useState(false);
 
-    useEffect(() => {
-        const fetchRecords = async () => {
-            try {
-                const data = await RetrieveRecords();
-                setRecords(data);
-                setLoading(false);
-                console.log("Records:", data); // Log fetched data, not state
-            } catch (error) {
-                console.error("Error fetching records:", error);
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchRecords = async () => {
+      try {
+        const data = await RetrieveRecords();
+        setRecords(data);
+        console.log("Records:", data); // Log fetched data, not state
+      } catch (error) {
+        console.error("Error fetching records:", error);
+      }
+    };
+    fetchRecords();
+  }, []);
 
-        fetchRecords();
-    }, []);
+  const handleOnClick = () => {
+    setSavePromptVisibility(true);
+  };
 
-    return (
-        <div>
-            <h2>Records Table</h2>
-            {loading ? (
-                <h1>Loading records...</h1>
-            ) : (
-                records.map((record, index) => (
-                    <div key={index}>
-                        <h3>Record #{record.recordId}</h3>
-                        <p>User Name: {record.userName}</p>
-                        <p>Words Per Minute (WPM): {record.wpm}</p>
-                        <p>Input Date: {record.inputDate}</p>
-                    </div>
-                ))
-            )}
-        </div>
-    );
+  const handleSetSavePromptVisibility = () => {
+    setSavePromptVisibility(false);
+  };
+
+  const handleReceiveUserName = () => {};
+
+  return (
+    <div>
+      <div className="highscoreWpmDiv">
+        <p>Current WPM: {}</p>
+        <Button buttonContext="Save" handleOnClick={handleOnClick} />
+        {savePromptVisibility && (
+          <SavePrompt
+            receiveUserName={handleReceiveUserName}
+            setSavePromptVisibility={handleSetSavePromptVisibility}
+          />
+        )}
+      </div>
+      <h1 className="highscoreHeader">Records Table</h1>
+      <Table records={records}></Table>
+    </div>
+  );
 }
 
 export default Highscore;
