@@ -7,29 +7,30 @@
     font-family: 'Montserrat';
     background-color: #404246;
     border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
 .user-input {
-    caret-color: transparent;
-    user-select: none;
-
     position: absolute;
-    line-height: 1.5;
     top: 0%;
     left: 20px;
+    height: 100%;
+    width: 95%;
+    caret-color: transparent;
+    user-select: none;
+    line-height: 1.5;
     font-size: 30px;
     box-sizing: border-box;
+    border: 0px;
     transform: translateY(50%, 50%);
     margin: 10px;
-    width: 95%;
-    min-height: 700px;
     padding: 10px;
-
-    border: 1px;
     z-index: 1;
     color: transparent;
     background-color: transparent;
-    flex-wrap: wrap;
+    user-select: none;
   }
 
   .user-input:focus{

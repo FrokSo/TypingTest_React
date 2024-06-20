@@ -3,34 +3,27 @@ import "./SavePrompt.css";
 import BasicTextbox from "../components/BasicTextbox";
 import { useState } from "react";
 import Button from "../components/Button";
-import { ApiPostRequest, SendRecord } from "../NetworkAPI/NetworkCommands";
+import { ApiPostRequest, SendRecord } from "../networkAPI/NetworkCommands";
 
 interface SavePromptProp {
-  receiveUserName: (userName: string) => void;
-  setSavePromptVisibility: () => void;
+  setSavePromptVisibilityFalse: () => void;
+  wpm: number;
 }
 
-function SavePrompt({
-  receiveUserName,
-  setSavePromptVisibility,
-}: SavePromptProp) {
-  const [userInput, setUserInput] = useState("");
+function SavePrompt({ setSavePromptVisibilityFalse, wpm }: SavePromptProp) {
+  const [userName, setuserName] = useState("");
 
   const handleOverlayClick = () => {
-    setSavePromptVisibility();
-  };
-
-  const handleUserInput = (userInput: string) => {
-    setUserInput(userInput);
+    setSavePromptVisibilityFalse();
   };
 
   const handleSaveButtonClick = () => {
     const request: ApiPostRequest = {
-      userName: "asd",
-      wpm: 100,
+      userName: userName,
+      wpm: wpm,
     };
     SendRecord(request);
-    setSavePromptVisibility();
+    setSavePromptVisibilityFalse();
   };
 
   const handleDialogClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -41,7 +34,7 @@ function SavePrompt({
     <div className="overlay" onClick={handleOverlayClick}>
       <div className="savePromptOverlay" onClick={handleDialogClick}>
         <h1>Enter Name: </h1>
-        <BasicTextbox receiveUserInput={handleUserInput} />
+        <BasicTextbox receiveUserInput={(value) => setuserName(value)} />
         <Button buttonContext="Save" handleOnClick={handleSaveButtonClick} />
       </div>
     </div>,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./BasicTextbox.css";
 
 interface BasicTextboxProp {
@@ -11,8 +11,13 @@ function BasicTextbox({ receiveUserInput }: BasicTextboxProp) {
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput(event.target.value);
-        receiveUserInput(userInput);
     }
+
+    useEffect(() => {
+        console.log(userInput);
+        setUserInput(userInput);
+        receiveUserInput(userInput);
+    }, [userInput])
 
     return (<input className="textbox"
         type="text"

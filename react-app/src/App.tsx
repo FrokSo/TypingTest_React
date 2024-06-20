@@ -2,9 +2,9 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from './components/Footer';
 import Header from './components/Header';
-import About from './views/About';
 import Home from './views/Home';
 import Highscore from './views/Highscore'
+import { Shuffle } from './helper/HelperFunc';
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
     "turtle", "snake", "lizard", "gecko", "chameleon", "iguana", "monitor lizard", "komodo dragon", "crocodile", "alligator",
     "tortoise", "terrapin", "chinchilla", "ferret", "hamster", "gerbil", "mouse", "rat", "guinea pig", "rabbit",
     "hedgehog", "porcupine", "mole", "shrew"];
+
   const year = new Date().getFullYear();
   let footerInput = ` ${year} Website by Ryan`
 
@@ -42,10 +43,9 @@ function App() {
         <div>
           <Header header='Typing Speed Website' />
           <Routes>
-            <Route key="/" path="/" element={<Home wordDump={wordDump}
-              initialSeconds={60}
+            <Route key="/" path="/" element={<Home wordDump={Shuffle(wordDump)}
+              initialSeconds={5}
             />} />
-            <Route key="about" path="/about" Component={About} />
             <Route key="highscore" path="/highscore" Component={Highscore} />
           </Routes>
           <Footer footerInput={footerInput} />

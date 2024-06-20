@@ -20,9 +20,6 @@ function Header({ header }: HeaderProp) {
             <li className="listItem" onClick={() => navigate("/")}>
               Home
             </li>
-            <li className="listItem" onClick={() => navigate("/about")}>
-              About
-            </li>
             <li className="listItem" onClick={() => navigate("/highscore")}>
               Highscore
             </li>

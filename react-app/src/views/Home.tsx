@@ -5,6 +5,7 @@ import BasicTextbox from "../components/BasicTextbox";
 import Button from "../components/Button"
 
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 interface HomeProp {
     wordDump: string[];
@@ -19,14 +20,20 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
     const [timeRemaining, setTimeRemaining] = useState(0);
     const [numCorrectWords, setNumCorrectWords] = useState(0);
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         let tempWpm = numCorrectWords / (initialSeconds - timeRemaining) * 60;
         setWpm(tempWpm);
-    }, [numCorrectWords, timeRemaining])
+        if (isTextboxDiabled) {
+            console.log(wpm);
+            navigate('/highscore', { state: { Wpm: `${wpm}` } });
+        }
+    }, [numCorrectWords, timeRemaining, isTextboxDiabled])
 
     const handleOnTimerFinish = () => {
         setIsTextBoxDisable(true);
+
         setshouldStart(false);
     }
 
@@ -57,13 +64,6 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
                 startTimer={handleStartTimer}
                 retrieveNumCorrectWords={handleRetrieveNumCorrectWords}
             />
-
-
-            {/* <div className="flex">
-                <p>Enter Name: </p>
-                <BasicTextbox receiveUserInput={handleReceiveUserInput} />
-                <Button buttonContext="Enter" />
-            </div> */}
         </div>
     )
 }

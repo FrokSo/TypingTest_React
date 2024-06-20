@@ -1,4 +1,4 @@
-import { ApiResponse } from "../NetworkAPI/NetworkCommands";
+import { ApiResponse } from "../networkAPI/NetworkCommands";
 import "./Table.css";
 
 interface tableProp {
@@ -6,6 +6,7 @@ interface tableProp {
 }
 
 function Table({ records }: tableProp) {
+
   return (
     <>
       <table className="tableBasicStyle">

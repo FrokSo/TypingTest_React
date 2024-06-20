@@ -1,3 +1,11 @@
 .buttonDefaultStyle {
   margin: 10px;
+  border-radius: 25px;
+  height: 40px;
+  width: 70px;
+}
+
+.buttonDefaultStyle:hover {
+  color: rgba(255, 255, 255, 0.37);
+  cursor: context-menu;
 }
