@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './views/Home';
 import Highscore from './views/Highscore'
-import { Shuffle } from './helper/HelperFunc';
+import { PrepareWordDump } from './helper/HelperFunc';
 
 function App() {
 
@@ -43,7 +43,7 @@ function App() {
         <div>
           <Header header='Typing Speed Website' />
           <Routes>
-            <Route key="/" path="/" element={<Home wordDump={Shuffle(wordDump)}
+            <Route key="/" path="/" element={<Home wordDump={PrepareWordDump(wordDump)}
               initialSeconds={60}
             />} />
             <Route key="highscore" path="/highscore" Component={Highscore} />

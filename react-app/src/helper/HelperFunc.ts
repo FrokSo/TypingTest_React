@@ -1,8 +1,10 @@
 import { ApiResponse, RetrieveRecords } from "../networkAPI/NetworkCommands";
 
 // Shuffles the word dump
-export function Shuffle(wordDump: string[]): string[]{
-
+export function PrepareWordDump(wordDump: string[]): string[]{
+    for(let i = 0; i < wordDump.length; ++i){
+        wordDump[i] = wordDump[i].replace(/\s/g, '');
+    }
     // Start from the end of the array
     for (let i = wordDump.length - 1; i > 0; i--) {
         // Generate a random index between 0 and i (inclusive)

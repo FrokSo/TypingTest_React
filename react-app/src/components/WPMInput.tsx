@@ -59,7 +59,7 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
                     currentCharIndex++;
                 }
                 input.push(
-                    <span key={i} className="spanWord">
+                    <span key={i}>
                         {wordSpan}
                     </span>
                 );
