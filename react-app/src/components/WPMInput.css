@@ -54,6 +54,10 @@
     flex-shrink: 0;
     pointer-events: none;
   }
+
+  .referenceText span {
+    display: inline; /* Ensures each character stays inline */
+}
   
 .spanDefault{
     color: rgba(211, 211, 211, 0.6);
@@ -79,4 +83,5 @@
     color: rgba(211, 211, 211, 0.6);
     font-size: 30px;
 
+    display:inline;
 }

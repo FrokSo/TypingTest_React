@@ -37,8 +37,9 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
                 var currentCharIndex = userTypedArray[i].length - 1;
 
                 // Checks from index 0 to current word
+                const wordSpan: JSX.Element[] = [];
                 for (let charChecker = 0; charChecker <= currentCharIndex; ++charChecker) {
-                    input.push(
+                    wordSpan.push(
                         <span key={`${i}-${charChecker}`}
                             className={getCharColor(wordDump[i][charChecker], userTypedArray[i][charChecker]) ?
                                 "spanCorrect" : "spanError"}>
@@ -49,7 +50,7 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
                 }
 
                 for (let charIndex = currentCharIndex + 1; charIndex < wordDump[i].length; ++charIndex) {
-                    input.push(
+                    wordSpan.push(
                         <span key={`${i}-${charIndex}`}
                             className="spanDefault">
                             {wordDump[i][charIndex]}
@@ -57,6 +58,11 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
                     );
                     currentCharIndex++;
                 }
+                input.push(
+                    <span key={i} className="spanWord">
+                        {wordSpan}
+                    </span>
+                );
 
                 input.push(<span className="spanSpace" key={`space-${i}`}></span>);
                 if (wordDump[i] === userTypedArray[i]) {
@@ -102,8 +108,8 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
 
     return (
         <>
-            <div className="container">
-                <div className="referenceText">{userInput}</div>
+            <div className="container" style={{ whiteSpace: 'nowrap' }}>
+                <div className="referenceText" style={{ whiteSpace: 'nowrap' }}>{userInput}</div>
                 <input
                     className="user-input"
                     onChange={handleChange}
