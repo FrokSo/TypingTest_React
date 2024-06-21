@@ -105,7 +105,6 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
             <div className="container">
                 <div className="referenceText">{userInput}</div>
                 <input
-                    aria-hidden="true"
                     className="user-input"
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
@@ -113,6 +112,7 @@ function WPMInput({ wordDump, disableTextBox, startTimer, retrieveNumCorrectWord
                     type="text"
                     spellCheck={false}
                     disabled={isTextboxDisabled}
+                    autoFocus={true}
                 />
             </div>
         </>

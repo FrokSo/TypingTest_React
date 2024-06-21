@@ -1,5 +1,6 @@
 import { ApiResponse, RetrieveRecords } from "../networkAPI/NetworkCommands";
 
+// Shuffles the word dump
 export function Shuffle(wordDump: string[]): string[]{
 
     // Start from the end of the array
@@ -14,6 +15,7 @@ export function Shuffle(wordDump: string[]): string[]{
     return wordDump;
 }
 
+// Retrieve top 10 WPM records
 export function RetrieveTop10(data:ApiResponse[]) : ApiResponse[]{
     try {
         const sortedData = data.sort((a,b) => b.wpm - a.wpm);

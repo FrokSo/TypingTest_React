@@ -42,35 +42,6 @@ namespace Backend.Controllers
             return wPMRecord;
         }
 
-        // PUT: api/WPMRecords/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutWPMRecord(int id, WPMRecord wPMRecord)
-        {
-            if (id != wPMRecord.RecordId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(wPMRecord).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!WPMRecordExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/WPMRecords
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -87,22 +58,6 @@ namespace Backend.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWPMRecord", new { id = record.RecordId }, record);
-        }
-
-        // DELETE: api/WPMRecords/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteWPMRecord(int id)
-        {
-            var wPMRecord = await _context.WPMRecords.FindAsync(id);
-            if (wPMRecord == null)
-            {
-                return NotFound();
-            }
-
-            _context.WPMRecords.Remove(wPMRecord);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool WPMRecordExists(int id)

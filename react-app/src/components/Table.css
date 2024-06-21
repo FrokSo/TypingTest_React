@@ -8,3 +8,8 @@ td {
   border: 1px solid #444;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.tab-space {
+  display: inline-block;
+  width: 10px; /* Adjust width as needed for desired spacing */
+}

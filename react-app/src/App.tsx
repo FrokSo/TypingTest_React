@@ -23,8 +23,8 @@ function App() {
     "sparrow", "hummingbird", "pelican", "flamingo", "toucan", "crocodile", "alligator", "hippo", "rhino", "gorilla",
     "orangutan", "chimpanzee", "bonobo", "sloth", "squirrel", "raccoon", "fox", "hedgehog", "deer", "rabbit",
     "bear", "wolf", "bobcat", "lynx", "coyote", "jaguar", "cougar", "puma", "ocelot", "penguin",
-    "seal", "sea lion", "walrus", "otter", "beaver", "dolphin", "whale", "shark", "octopus",
-    "jellyfish", "starfish", "squid", "crab", "lobster", "shrimp", "coral", "anemone", "sea turtle", "manatee",
+    "seal", "sealion", "walrus", "otter", "beaver", "dolphin", "whale", "shark", "octopus",
+    "jellyfish", "starfish", "squid", "crab", "lobster", "shrimp", "coral", "anemone", "seaturtle", "manatee",
     "seahorse", "ray", "eel", "anglerfish", "swordfish", "tuna", "salmon", "trout", "bass", "cod",
     "mackerel", "marlin", "catfish", "goldfish", "koi", "carp", "piranha", "barracuda", "stingray",
     "dragonfly", "butterfly", "firefly", "ladybug", "ant", "bee", "wasp", "mosquito", "fly", "beetle",
@@ -44,7 +44,7 @@ function App() {
           <Header header='Typing Speed Website' />
           <Routes>
             <Route key="/" path="/" element={<Home wordDump={Shuffle(wordDump)}
-              initialSeconds={5}
+              initialSeconds={60}
             />} />
             <Route key="highscore" path="/highscore" Component={Highscore} />
           </Routes>

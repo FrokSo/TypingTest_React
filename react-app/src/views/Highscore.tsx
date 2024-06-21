@@ -49,7 +49,7 @@ function Highscore() {
     };
 
     return (
-        <div>
+        <div className="highscoreContainer">
             {wpm !== 0 ?
                 <div className="highscoreWpmDiv">
                     <p>Current WPM: {wpm}</p>
@@ -61,7 +61,7 @@ function Highscore() {
                 </div> : <div />}
 
             <h1 className="highscoreHeader">Records Table</h1>
-            <Table records={records}></Table>
+            <Table records={records} cssProp="tableStyle"></Table>
         </div>
     );
 }

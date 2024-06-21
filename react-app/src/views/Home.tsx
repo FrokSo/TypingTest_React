@@ -52,7 +52,7 @@ function Home({ wordDump, initialSeconds }: HomeProp) {
     return (
         <div >
             <div className="infoDiv">
-                <p>words per minute: {wpm}</p>
+                <p>Words Per Minute: {wpm}</p>
                 <Timer
                     initialSeconds={initialSeconds}
                     shouldStart={shouldStart}

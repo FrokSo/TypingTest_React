@@ -19,12 +19,10 @@
     height: 100%;
     width: 95%;
     caret-color: transparent;
-    user-select: none;
     line-height: 1.5;
     font-size: 30px;
     box-sizing: border-box;
     border: 0px;
-    transform: translateY(50%, 50%);
     margin: 10px;
     padding: 10px;
     z-index: 1;
@@ -45,7 +43,6 @@
     top: 0%;
     left: 20px;
     font-size: 30px;
-    transform: translateY(50%, 50%);
     margin: 10px;
     width: 95%;
     min-height: 700px;
@@ -54,9 +51,8 @@
 
     display: flex;
     flex-wrap: wrap;
+    flex-shrink: 0;
     pointer-events: none;
-    white-space: pre-wrap;
-    word-wrap: break-word;
   }
   
 .spanDefault{
