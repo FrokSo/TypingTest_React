@@ -6,7 +6,7 @@ Frontend and Backend TypingTest Application that uses `React Typescript` and `C#
 
 ## Features
 
-- Only checks new word on _space_ enter
+- Only checks new word on _space_
 - Stores Words Per Minute in a database for improvement reference
 
 <br>
