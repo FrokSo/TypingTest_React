@@ -1,4 +1,4 @@
-import { ApiResponse, RetrieveRecords } from "../networkAPI/NetworkCommands";
+import { ApiResponse } from "../networkAPI/NetworkCommands";
 
 // Shuffles the word dump
 export function PrepareWordDump(wordDump: string[]): string[] {

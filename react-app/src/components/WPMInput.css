@@ -1,87 +1,85 @@
 .container {
-    position: relative;
-    width: 80%;
-    min-height: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Montserrat';
-    background-color: #404246;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  position: relative;
+  width: 80%;
+  min-height: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Montserrat";
+  background-color: #404246;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .user-input {
-    position: absolute;
-    top: 0%;
-    left: 20px;
-    height: 100%;
-    width: 95%;
-    caret-color: transparent;
-    line-height: 1.5;
-    font-size: 30px;
-    box-sizing: border-box;
-    border: 0px;
-    margin: 10px;
-    padding: 10px;
-    z-index: 1;
-    color: transparent;
-    background-color: transparent;
-    user-select: none;
-  }
+  position: absolute;
+  top: 0%;
+  left: 20px;
+  height: 100%;
+  width: 95%;
+  caret-color: transparent;
+  line-height: 1.5;
+  font-size: 30px;
+  box-sizing: border-box;
+  border: 0px;
+  margin: 10px;
+  padding: 10px;
+  z-index: 1;
+  color: transparent;
+  background-color: transparent;
+  user-select: none;
+}
 
-  .user-input:focus{
-    border-radius: 0px;
-    outline: 0.1px solid transparent;
-  }
+.user-input:focus {
+  border-radius: 0px;
+  outline: 0.1px solid transparent;
+}
 
-  
 .referenceText {
-    position: relative;
-    line-height: 1.5;
-    top: 0%;
-    left: 20px;
-    font-size: 30px;
-    margin: 10px;
-    width: 95%;
-    min-height: 700px;
-    padding: 10px;
-    overflow: auto;
+  position: relative;
+  line-height: 1.5;
+  top: 0%;
+  left: 20px;
+  font-size: 30px;
+  margin: 10px;
+  width: 95%;
+  min-height: 700px;
+  padding: 10px;
+  overflow: auto;
 
-    display: flex;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    pointer-events: none;
-  }
-
-  .referenceText span {
-    display: inline; /* Ensures each character stays inline */
-}
-  
-.spanDefault{
-    color: rgba(211, 211, 211, 0.6);
-    font-size: 30px;
-}
-  
-.spanError{
-    color: red;
-    font-size: 30px;
-
-}
-.spanCorrect{
-    color: lightgrey;
-    font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
-.spanSpace{
-    margin-right: 10px;
+.referenceText span {
+  display: inline; /* Ensures each character stays inline */
 }
 
-.spanUntyped{
-    margin-right: 10px;
-    color: rgba(211, 211, 211, 0.6);
-    font-size: 30px;
+.spanDefault {
+  color: rgba(211, 211, 211, 0.6);
+  font-size: 30px;
+}
 
-    display:inline;
+.spanError {
+  color: red;
+  font-size: 30px;
+}
+.spanCorrect {
+  color: lightgrey;
+  font-size: 30px;
+}
+
+.spanSpace {
+  margin-right: 10px;
+}
+
+.spanUntyped {
+  margin-right: 10px;
+  color: rgba(211, 211, 211, 0.6);
+  font-size: 30px;
+
+  display: inline;
 }
