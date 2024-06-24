@@ -10,7 +10,7 @@ Frontend and Backend TypingTest Application that uses React Typescript and C# AS
 - To install Frontend dependencies, enter:
 
 ```
-'npm install'.
+npm install
 ```
 
 <br>
@@ -23,9 +23,8 @@ Frontend and Backend TypingTest Application that uses React Typescript and C# AS
 
 **Backend**
 
-```
 Install backend dependencies through the NuGet Package Manager
-```
+<br>
 
 - C# .NET8.0
 - EntityFrameworkCore 8.0.8
@@ -41,6 +40,6 @@ Install backend dependencies through the NuGet Package Manager
 In the backend project, under appsettings.json file, change _DefaultConnection_ to your MS SQL Server name
 
 ```
-"DefaultConnection": "Server=LAPTOP-VPOUF35U\\SQLEXPRESS;Database=TypingTest;Integrated Security=TrueTrustServerCertificate=True;"
+"DefaultConnection": "Server=YOURSERVERNAME;Database=TypingTest;Integrated Security=TrueTrustServerCertificate=True;"
 
 ```
